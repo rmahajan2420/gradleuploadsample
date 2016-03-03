@@ -1,0 +1,31 @@
+apply plugin: 'java'
+apply plugin: 'application'
+apply plugin: 'maven'
+apply plugin: "war"
+mainClassName = 'hello.HelloWorld'
+repositories {
+    maven{
+	url "${nexusUrl}/content/groups/public"
+    }
+}
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+dependencies {
+    compile "joda-time:joda-time:2.2"
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.10'
+}
+
+uploadArchives {
+  repositories {
+    mavenDeployer {
+      repository(
+        url: "${nexusUrl}/content/repositories/releases") {
+          authentication(userName: nexusUsername, password: nexusPassword)
+      }
+    }
+  }
+}

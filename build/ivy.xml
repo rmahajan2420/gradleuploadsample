@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ivy-module version="2.0" xmlns:m="http://ant.apache.org/ivy/maven">
+  <info organisation="" module="gradleuploadsample" revision="1.2" status="integration" publication="20160303080039">
+    <description/>
+  </info>
+  <configurations>
+    <conf name="archives" visibility="public" description="Configuration for archive artifacts."/>
+    <conf name="compile" visibility="private" description="Compile classpath for source set 'main'." extends="providedCompile"/>
+    <conf name="default" visibility="public" description="Configuration for default artifacts." extends="runtime"/>
+    <conf name="providedCompile" visibility="private" description="Additional compile classpath for libraries that should not be part of the WAR archive."/>
+    <conf name="providedRuntime" visibility="private" description="Additional runtime classpath for libraries that should not be part of the WAR archive." extends="providedCompile"/>
+    <conf name="runtime" visibility="private" description="Runtime classpath for source set 'main'." extends="compile,providedRuntime"/>
+    <conf name="testCompile" visibility="private" description="Compile classpath for source set 'test'." extends="compile"/>
+    <conf name="testRuntime" visibility="private" description="Runtime classpath for source set 'test'." extends="runtime,testCompile"/>
+  </configurations>
+  <publications>
+    <artifact name="gradleuploadsample" type="zip" ext="zip" conf="archives"/>
+    <artifact name="gradleuploadsample" type="tar" ext="tar" conf="archives"/>
+    <artifact name="gradleuploadsample" type="war" ext="war" conf="archives"/>
+    <artifact name="gradleuploadsample" type="jar" ext="jar" conf="runtime"/>
+  </publications>
+  <dependencies>
+    <dependency org="joda-time" name="joda-time" rev="2.2" conf="compile-&gt;default"/>
+  </dependencies>
+</ivy-module>
